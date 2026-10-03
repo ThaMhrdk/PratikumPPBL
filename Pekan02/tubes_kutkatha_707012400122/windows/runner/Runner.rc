@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "kutkatha_mobile" "\0"
+            VALUE "FileDescription", "tubes_kutkatha_707012400122" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "kutkatha_mobile" "\0"
+            VALUE "InternalName", "tubes_kutkatha_707012400122" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "kutkatha_mobile.exe" "\0"
-            VALUE "ProductName", "kutkatha_mobile" "\0"
+            VALUE "OriginalFilename", "tubes_kutkatha_707012400122.exe" "\0"
+            VALUE "ProductName", "tubes_kutkatha_707012400122" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

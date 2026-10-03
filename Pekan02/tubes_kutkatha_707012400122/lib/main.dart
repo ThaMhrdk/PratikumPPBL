@@ -1,44 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Core
-import 'core/app_theme.dart';
-import 'core/app_router.dart';
-
-// BLoCs
-import 'mvc/auth/bloc/auth_bloc.dart';
-import 'mvc/forum/bloc/forum_bloc.dart';
-import 'mvc/psikolog/bloc/psikolog_bloc.dart';
-import 'mvc/booking/bloc/booking_bloc.dart';
-import 'mvc/consultation/bloc/consultation_bloc.dart';
-import 'mvc/article/bloc/article_bloc.dart';
+import 'navigation/app_routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AplikasiKutkatha());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AplikasiKutkatha extends StatelessWidget {
+  const AplikasiKutkatha({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => AuthBloc()),
-        BlocProvider(create: (_) => ForumBloc()),
-        BlocProvider(create: (_) => PsikologBloc()),
-        BlocProvider(create: (_) => BookingBloc()),
-        BlocProvider(create: (_) => ConsultationBloc()),
-        BlocProvider(create: (_) => ArticleBloc()),
-      ],
-      child: MaterialApp(
-        title: 'Kutkatha',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        initialRoute: AppRoutes.splash,
-        onGenerateRoute: AppRouter.generateRoute,
-        onUnknownRoute: AppRouter.unknownRoute,
+    return MaterialApp(
+      title: 'Kutkatha - Kerangka Desain',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorSchemeSeed: Colors.deepPurple,
+        useMaterial3: true,
       ),
+      initialRoute: AppRoutes.beranda,
+      routes: AppRoutes.daftarRoute(),
+      onGenerateRoute: AppRoutes.bentukRoute,
+      onUnknownRoute: AppRoutes.routeTidakDikenal,
     );
   }
 }
