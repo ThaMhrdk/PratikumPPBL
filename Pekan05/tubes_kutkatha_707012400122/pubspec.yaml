@@ -1,0 +1,21 @@
+name: tubes_kutkatha_707012400122
+description: "Kerangka Desain Tugas Besar - Kutkatha Mobile (Modul 5 State Management BLoC, PPBL)"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_bloc: ^9.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
