@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+class HalamanKeluar extends StatelessWidget {
+  const HalamanKeluar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Keluar Akun')),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.logout, size: 56, color: Colors.deepPurple),
+              const SizedBox(height: 12),
+              const Text(
+                'Apakah Anda yakin ingin keluar dari akun Kutkatha Mobile?',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Batal'),
+                  ),
+                  const SizedBox(width: 12),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Ya, Keluar'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
