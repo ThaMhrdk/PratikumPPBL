@@ -1,0 +1,248 @@
+{
+  "info": {
+    "name": "SiPustaka API (Tugas Praktikum Modul 10 / 11)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "token_budi", "value": "" },
+    { "key": "token_andi", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register Budi",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Budi Santoso\",\n  \"email\": \"budi@example.com\",\n  \"password\": \"praktikum123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{base_url}}/api/auth/register"
+          }
+        },
+        {
+          "name": "Login Budi",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"budi@example.com\",\n  \"password\": \"praktikum123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{base_url}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Register & Login Andi",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Andi Pratama\",\n  \"email\": \"andi@example.com\",\n  \"password\": \"praktikum123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{base_url}}/api/auth/register"
+          }
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": "{{base_url}}/api/auth/me"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": "{{base_url}}/api/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Get All Books (Public)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": "{{base_url}}/api/books"
+          }
+        },
+        {
+          "name": "Get Book Detail (Public)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": "{{base_url}}/api/books/1"
+          }
+        },
+        {
+          "name": "Get Book Cover (Public)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/books/1/cover"
+          }
+        },
+        {
+          "name": "Create Book + Cover (form-data)",
+          "request": {
+            "method": "POST",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "judul", "value": "Pemrograman Flutter Lanjut", "type": "text" },
+                { "key": "penulis", "value": "Rizal Ramadhan", "type": "text" },
+                { "key": "penerbit", "value": "Informatika Bandung", "type": "text" },
+                { "key": "tahun_terbit", "value": "2026", "type": "text" },
+                { "key": "stok", "value": "10", "type": "text" },
+                { "key": "cover", "type": "file", "src": "" }
+              ]
+            },
+            "url": "{{base_url}}/api/books"
+          }
+        },
+        {
+          "name": "Create Book Validation Error 422",
+          "request": {
+            "method": "POST",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "judul", "value": "", "type": "text" },
+                { "key": "penulis", "value": "Rizal Ramadhan", "type": "text" },
+                { "key": "penerbit", "value": "Informatika Bandung", "type": "text" },
+                { "key": "tahun_terbit", "value": "2026", "type": "text" },
+                { "key": "stok", "value": "abc", "type": "text" },
+                { "key": "cover", "type": "file", "src": "" }
+              ]
+            },
+            "url": "{{base_url}}/api/books"
+          }
+        },
+        {
+          "name": "Update Book Cover (_method=PATCH)",
+          "request": {
+            "method": "POST",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "_method", "value": "PATCH", "type": "text" },
+                { "key": "judul", "value": "Pemrograman Flutter Edisi Revisi", "type": "text" },
+                { "key": "stok", "value": "12", "type": "text" },
+                { "key": "cover", "type": "file", "src": "" }
+              ]
+            },
+            "url": "{{base_url}}/api/books/1"
+          }
+        },
+        {
+          "name": "Delete Book",
+          "request": {
+            "method": "DELETE",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": "{{base_url}}/api/books/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Loans",
+      "item": [
+        {
+          "name": "Get All Loans",
+          "request": {
+            "method": "GET",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": "{{base_url}}/api/loans"
+          }
+        },
+        {
+          "name": "Create Loan (Budi)",
+          "request": {
+            "method": "POST",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book_id\": 1,\n  \"tanggal_pinjam\": \"2026-11-19\",\n  \"tanggal_kembali\": \"2026-11-26\",\n  \"status\": \"Dipinjam\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{base_url}}/api/loans"
+          }
+        },
+        {
+          "name": "Create Loan Without Token (401)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book_id\": 1,\n  \"tanggal_pinjam\": \"2026-11-19\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{base_url}}/api/loans"
+          }
+        },
+        {
+          "name": "Update Budi's Loan Using Andi Token (403)",
+          "request": {
+            "method": "PATCH",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_andi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Dikembalikan\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{base_url}}/api/loans/1"
+          }
+        },
+        {
+          "name": "Update Budi's Loan Using Budi Token (200)",
+          "request": {
+            "method": "PATCH",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_budi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Dikembalikan\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{base_url}}/api/loans/1"
+          }
+        },
+        {
+          "name": "Delete Loan Using Andi Token (403)",
+          "request": {
+            "method": "DELETE",
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token_andi}}", "type": "string" }] },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": "{{base_url}}/api/loans/1"
+          }
+        }
+      ]
+    }
+  ]
+}
