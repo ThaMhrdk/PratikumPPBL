@@ -19,27 +19,34 @@ class CartSummaryBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       color: theme.colorScheme.surfaceContainerHighest,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             '$totalItem item • Rp$totalHarga',
             style: theme.textTheme.titleMedium,
+            overflow: TextOverflow.ellipsis,
           ),
+          const SizedBox(height: 10),
           Row(
             children: [
-              PrimaryButton(
-                label: 'Kosongkan',
-                icon: Icons.delete_outline,
-                onPressed: onKosongkan,
+              Expanded(
+                child: PrimaryButton(
+                  label: 'Kosongkan',
+                  icon: Icons.delete_outline,
+                  onPressed: onKosongkan,
+                ),
               ),
               const SizedBox(width: 8),
-              PrimaryButton(
-                label: 'Checkout',
-                icon: Icons.check_circle_outline,
-                onPressed: onCheckout,
+              Expanded(
+                child: PrimaryButton(
+                  label: 'Checkout',
+                  icon: Icons.check_circle_outline,
+                  onPressed: onCheckout,
+                ),
               ),
             ],
           ),
